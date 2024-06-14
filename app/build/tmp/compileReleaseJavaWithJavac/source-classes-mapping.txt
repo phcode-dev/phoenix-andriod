@@ -1,0 +1,8 @@
+dev/phcode/test/twa/BuildConfig.java
+ dev.phcode.test.twa.BuildConfig
+dev/phcode/test/twa/LauncherActivity.java
+ dev.phcode.test.twa.LauncherActivity
+dev/phcode/test/twa/DelegationService.java
+ dev.phcode.test.twa.DelegationService
+dev/phcode/test/twa/Application.java
+ dev.phcode.test.twa.Application
