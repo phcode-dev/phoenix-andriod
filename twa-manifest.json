@@ -1,9 +1,9 @@
 {
-  "packageId": "dev.phcode.test.twa",
+  "packageId": "prod.phcode.twa",
   "host": "phcode.dev",
   "name": "Phoenix Code",
   "launcherName": "Phoenix Code",
-  "display": "fullscreen",
+  "display": "standalone",
   "themeColor": "#47484B",
   "themeColorDark": "#000000",
   "navigationColor": "#000000",
@@ -14,13 +14,15 @@
   "enableNotifications": true,
   "startUrl": "/",
   "iconUrl": "https://updates.phcode.io/icons/phoenix_icon.png",
+  "maskableIconUrl": "https://updates.phcode.io/icons/phoenix_icon.png",
+  "monochromeIconUrl": "https://updates.phcode.io/icons/phoenix_icon.png",
   "splashScreenFadeOutDuration": 300,
   "signingKey": {
-    "path": "/home/charly/repo/phoenix-andriod/android.keystore",
+    "path": "/home/charly/repo/phoenix-andriod-prod/android.keystore",
     "alias": "android"
   },
-  "appVersionName": "2",
-  "appVersionCode": 2,
+  "appVersionName": "9",
+  "appVersionCode": 9,
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
   "webManifestUrl": "https://phcode.dev/manifest.json",
@@ -34,13 +36,13 @@
     "enabled": true
   },
   "enableSiteSettingsShortcut": true,
-  "isChromeOSOnly": false,
+  "isChromeOSOnly": true,
   "isMetaQuest": false,
   "fullScopeUrl": "https://phcode.dev/",
-  "minSdkVersion": 19,
+  "minSdkVersion": 34,
   "orientation": "default",
   "fingerprints": [],
   "additionalTrustedOrigins": [],
   "retainedBundles": [],
-  "appVersion": "2"
+  "appVersion": "9"
 }
