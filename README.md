@@ -6,7 +6,7 @@ Welcome to the **phoenix-android** repository. This repository contains the sour
 ## Prerequisites
 
 Before you begin, ensure the following tools are installed:
-- Node.js (v12 or higher)
+- Node.js (v20 or higher)
 - npm (typically installed with Node.js)
 - Java Development Kit (JDK) 8 or newer
 - Android SDK
