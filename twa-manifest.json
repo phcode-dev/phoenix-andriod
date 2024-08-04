@@ -14,35 +14,29 @@
   "enableNotifications": true,
   "startUrl": "/",
   "iconUrl": "https://updates.phcode.io/icons/phoenix_icon.png",
-  "maskableIconUrl": "https://updates.phcode.io/icons/phoenix_icon.png",
-  "monochromeIconUrl": "https://updates.phcode.io/icons/phoenix_icon.png",
   "splashScreenFadeOutDuration": 300,
   "signingKey": {
     "path": "/home/charly/repo/phoenix-andriod-prod/android.keystore",
     "alias": "android"
   },
-  "appVersionName": "9",
-  "appVersionCode": 9,
+  "appVersionName": "24",
+  "appVersionCode": 24,
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
   "webManifestUrl": "https://phcode.dev/manifest.json",
   "fallbackType": "customtabs",
-  "features": {
-    "playBilling": {
-      "enabled": true
-    }
-  },
+  "features": {},
   "alphaDependencies": {
-    "enabled": true
+    "enabled": false
   },
   "enableSiteSettingsShortcut": true,
   "isChromeOSOnly": true,
   "isMetaQuest": false,
   "fullScopeUrl": "https://phcode.dev/",
-  "minSdkVersion": 34,
+  "minSdkVersion": 19,
   "orientation": "default",
   "fingerprints": [],
   "additionalTrustedOrigins": [],
   "retainedBundles": [],
-  "appVersion": "9"
+  "appVersion": "24"
 }
