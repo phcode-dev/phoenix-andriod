@@ -27,7 +27,16 @@ cd phoenix-android
 
 ## Building the TWA
 
-To build the Trusted Web Activity (TWA) APK using Bubblewrap with the existing `twa-manifest.json` configuration, run the following command:
+To build the Trusted Web Activity (TWA) APK using Bubblewrap with the existing `twa-manifest.json` configuration, ensure the `twa-manifest.json` includes the correct signing key information:
+
+```json
+"signingKey": {
+    "path": "/home/charly/repo/phoenix-andriod-prod/android.keystore",
+    "alias": "android"
+}
+```
+
+Then run the following command:
 ```bash
 bubblewrap build
 ```
