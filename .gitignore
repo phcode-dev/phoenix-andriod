@@ -1,0 +1,22 @@
+# Local machine config: SDK path differs per machine and must never be committed.
+local.properties
+
+# Gradle / build output
+.gradle/
+build/
+app/build/
+captures/
+
+# Signing material must never enter the repo. The upload keystore is expected at ./android.keystore
+# (see createRelease.sh); losing it means never being able to update the Play listing again, so keep
+# a backup somewhere safe outside this checkout.
+*.keystore
+*.jks
+keystore.properties
+
+# IDE
+.idea/
+*.iml
+
+# OS
+.DS_Store

@@ -22,7 +22,7 @@ plugins {
 
 def twaManifest = [
     applicationId: 'prod.phcode.twa',
-    hostName: 'phcode.dev', // The domain being opened in the TWA.
+    hostName: 'web.phcode.dev', // The domain being opened in the TWA.
     launchUrl: '/', // The start path for the TWA. Must be relative to the domain.
     name: 'Phoenix Code', // The application name.
     launcherName: 'Phoenix Code', // The name shown on the Android Launcher.
@@ -51,14 +51,14 @@ def twaManifest = [
 ]
 
 android {
-    compileSdkVersion 35
+    compileSdkVersion 36
     namespace "prod.phcode.twa"
     defaultConfig {
         applicationId "prod.phcode.twa"
         minSdkVersion 19
-        targetSdkVersion 35
-        versionCode 24
-        versionName "24"
+        targetSdkVersion 36
+        versionCode 25
+        versionName "25"
 
         // The name for the application
         resValue "string", "appName", twaManifest.name
@@ -74,12 +74,12 @@ android {
             // The URL the Web Manifest for the Progressive Web App that the TWA points to. This
             // is used by Chrome OS and Meta Quest to open the Web version of the PWA instead of
             // the TWA, as it will probably give a better user experience for non-mobile devices.
-            resValue "string", "webManifestUrl", 'https://phcode.dev/manifest.json'
+            resValue "string", "webManifestUrl", 'https://web.phcode.dev/manifest.json'
         
 
         
             // This is used by Meta Quest.
-            resValue "string", "fullScopeUrl", 'https://phcode.dev/'
+            resValue "string", "fullScopeUrl", 'https://web.phcode.dev/'
         
 
         
@@ -146,9 +146,59 @@ android {
         resValue "bool", "enableSiteSettingsShortcut", twaManifest.enableSiteSettingsShortcut
         resValue "string", "orientation", twaManifest.orientation
     }
+    // Release signing credentials, resolved in priority order:
+    //   1. environment variables, which is how createRelease.sh passes them. Nothing touches the
+    //      disk and nothing appears in the process arguments, where any user could read it via ps.
+    //   2. keystore.properties, gitignored, for anyone who prefers a local file.
+    // If neither is usable the build still succeeds and produces an UNSIGNED release, so a clone
+    // without the signing key is never broken, and the log says plainly which it was.
+    def signingProps = {
+        def fromEnv = [
+            storeFile: System.getenv("PHCODE_KEYSTORE_FILE"),
+            storePassword: System.getenv("PHCODE_KEYSTORE_PASSWORD"),
+            keyAlias: System.getenv("PHCODE_KEY_ALIAS"),
+            keyPassword: System.getenv("PHCODE_KEY_PASSWORD")
+        ]
+        def props = fromEnv.values().every { it } ? fromEnv : null
+        if (props == null) {
+            def propsFile = rootProject.file("keystore.properties")
+            if (!propsFile.exists()) {
+                logger.lifecycle("No signing credentials found, release build will be UNSIGNED.")
+                return null
+            }
+            def loaded = new Properties()
+            propsFile.withInputStream { loaded.load(it) }
+            def missing = ["storeFile", "storePassword", "keyAlias", "keyPassword"].findAll { !loaded[it] }
+            if (missing) {
+                logger.lifecycle("keystore.properties is missing ${missing.join(', ')}, "
+                        + "release build will be UNSIGNED.")
+                return null
+            }
+            props = loaded
+        }
+        if (!file(props["storeFile"]).exists()) {
+            logger.lifecycle("Keystore not found at ${props['storeFile']}, release build will be UNSIGNED.")
+            return null
+        }
+        return props
+    }()
+
+    signingConfigs {
+        release {
+            if (signingProps != null) {
+                storeFile = file(signingProps["storeFile"])
+                storePassword = signingProps["storePassword"]
+                keyAlias = signingProps["keyAlias"]
+                keyPassword = signingProps["keyPassword"]
+            }
+        }
+    }
     buildTypes {
         release {
             minifyEnabled true
+            if (signingProps != null) {
+                signingConfig signingConfigs.release
+            }
         }
     }
     compileOptions {
