@@ -1,6 +1,6 @@
 {
   "packageId": "prod.phcode.twa",
-  "host": "phcode.dev",
+  "host": "web.phcode.dev",
   "name": "Phoenix Code",
   "launcherName": "Phoenix Code",
   "display": "standalone",
@@ -19,11 +19,11 @@
     "path": "/home/charly/repo/phoenix-andriod-prod/android.keystore",
     "alias": "android"
   },
-  "appVersionName": "24",
-  "appVersionCode": 24,
+  "appVersionName": "25",
+  "appVersionCode": 25,
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
-  "webManifestUrl": "https://phcode.dev/manifest.json",
+  "webManifestUrl": "https://web.phcode.dev/manifest.json",
   "fallbackType": "customtabs",
   "features": {},
   "alphaDependencies": {
@@ -32,11 +32,13 @@
   "enableSiteSettingsShortcut": true,
   "isChromeOSOnly": true,
   "isMetaQuest": false,
-  "fullScopeUrl": "https://phcode.dev/",
+  "fullScopeUrl": "https://web.phcode.dev/",
   "minSdkVersion": 19,
   "orientation": "default",
   "fingerprints": [],
-  "additionalTrustedOrigins": [],
+  "additionalTrustedOrigins": [
+    "https://phcode.dev"
+  ],
   "retainedBundles": [],
-  "appVersion": "24"
+  "appVersion": "25"
 }
